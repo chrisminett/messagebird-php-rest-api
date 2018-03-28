@@ -16,40 +16,6 @@ class HttpClientTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessageRegExp #^Timeout must be an int > 0, got "integer 0".$#
-     */
-    public function testHttpClientInvalidTimeout()
-    {
-        new HttpClient(Client::ENDPOINT, 0);
-    }
-
-    /**
-     * Tests a boundary condition (timeout == 1)
-     */
-    public function testHttpClientValidTimeoutBoundary()
-    {
-        new HttpClient(Client::ENDPOINT, 1);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessageRegExp #^Connection timeout must be an int >= 0, got "stdClass".$#
-     */
-    public function testHttpClientInvalidConnectionTimeout()
-    {
-        new HttpClient(Client::ENDPOINT, 10, new \stdClass());
-    }
-
-    /**
-     * Tests a boundary condition (connectionTimeout == 0)
-     */
-    public function testHttpClientValidConnectionTimeoutBoundary()
-    {
-        new HttpClient(Client::ENDPOINT, 10, 0);
-    }
-
-    /**
      * Test that requests can only be made when there is an Authentication set
      *
      * @expectedException \MessageBird\Exceptions\AuthenticateException
